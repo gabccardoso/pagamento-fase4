@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  humburguer:
+    image: gabccardoso/pagamento:latest
+    build: Aplicação
+    restart: always
+    ports:
+      - 8032:8080
+    networks:
+      - springboot-mysql-net
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: "mysql:8.0"
+    restart: always
+    ports:
+      - 3307:3306
+    networks:
+      - springboot-mysql-net
+    container_name: mysqldb
+
+networks:
+  springboot-mysql-net:
